@@ -1,0 +1,6 @@
+package com.lt.crs.dao;
+
+public interface CourseOps {
+	public void courseRegistrationData();
+	public void courseAvailability();
+}

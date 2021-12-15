@@ -1,0 +1,10 @@
+package com.lt.crs.business;
+
+public class StudentOperations {
+	public void register() {
+		
+	}
+	public void viewCourses() {
+		
+	}
+}

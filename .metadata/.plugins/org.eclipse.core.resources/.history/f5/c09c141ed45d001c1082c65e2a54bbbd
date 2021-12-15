@@ -1,0 +1,12 @@
+package com.lt.crs.dao;
+
+public interface AdminOps {
+	public void enrolledStudents();
+    public void viewAllStudents();
+    public void addGrades();
+    public void showGrades();
+    public void availableCourses();
+    public void viewCourses();
+    public Professor enrollProfessors();
+    public void registerProfessor(String name, String cname, int id, String dpt, String pwd);
+} 

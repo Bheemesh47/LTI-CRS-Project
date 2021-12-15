@@ -1,0 +1,16 @@
+package com.lt.crs.dao;
+
+import com.lt.crs.business.AdminOperations;
+
+public interface CourseOps {
+	public void courseRegistrationData();
+	public void courseAvailability();
+	public void courseStatus();
+	static public void registerCourse() {
+		
+	}
+	static public void viewCourses(){
+		AdminOperations ao = new AdminOperations();
+		ao.viewAllCourses();
+	}
+}

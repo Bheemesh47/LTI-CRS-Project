@@ -1,0 +1,7 @@
+package com.lt.crs.business;
+
+import com.lt.crs.dao.CourseDataOps;
+
+public class CourseOperations implements CourseOps {
+
+}

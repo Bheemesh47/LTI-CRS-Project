@@ -1,0 +1,9 @@
+package com.lt.crs.app;
+
+public class Dummy {
+	public static void main(String[] args) {
+		String format = "%-20s %-15s %-20s %-15s %-10s";
+
+		System.out.printf(format, "Name", "Group_name", "Java_Prof_Level", "Cpr_Nr", "Gender", "[1m testing bold");
+	}
+}

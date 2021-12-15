@@ -1,0 +1,7 @@
+package com.lt.crs.dao;
+
+public interface CourseDataOps {
+	 public void courseMapingForProfessor();
+	    public void courseData();
+	    public void viewAllCourses();
+}

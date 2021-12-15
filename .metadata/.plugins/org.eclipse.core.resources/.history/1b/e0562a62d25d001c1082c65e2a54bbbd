@@ -1,0 +1,171 @@
+package com.lt.crs.business;
+
+import java.util.*;
+import java.util.Scanner;
+
+import com.lt.crs.bean.AdminOps;
+import com.lt.crs.bean.CourseCatalogue;
+import com.lt.crs.bean.Professor;
+import com.lt.crs.bean.Student;
+import com.lt.crs.dao.CourseDataOps;
+import com.lt.crs.validation.AdminValidations;
+
+public class AdminOperations implements AdminOps,CourseDataOps,AdminValidations {
+	static Student arr[];
+	static CourseCatalogue cou[];
+	static ArrayList<String> al= new ArrayList<String>();
+	static ArrayList<String> al2= new ArrayList<String>();
+	static public Map m = new HashMap();
+	public void enrolledStudents() {
+		Student s1= new Student("Ramesh",1,"IT","Java",101);
+		Student s2= new Student("Deepika",2,"IT","Java",101);
+		Student s3= new Student("Bharati",3,"IT","Java",101);
+		Student s4= new Student("Bharati",3,"IT","SQL",102);
+		Student s5= new Student("Shiva",4,"IT","Java",101);
+		Student s6= new Student("Shiva",4,"IT","SQL",102);
+		arr= new Student[6];  
+		arr[0]=s1;
+		arr[1]=s2;
+		arr[2]=s3;
+		arr[3]=s4;
+		arr[4]=s5;
+		arr[5]=s6;
+		//System.out.println(arr.length);
+	}
+	 public void viewAllStudents() {
+		 System.out.println("---------------------------------------------------------------------------------");
+		 System.out.println("Student-Name"+"	"+ "Student-ID"+"	"+ "Course-ID"+"	"+"Course-Name"+"	"+ "Department");
+			System.out.println("---------------------------------------------------------------------------------");
+		for(int i=0;i<arr.length;i++) {
+			//System.out.println(arr.length);
+			Student s= arr[i];
+			System.out.println(s.getStudentName()+"	"+ s.getStudentId()+"	"+ s.getCourseId()+"	"+s.getCoursseName()+"	"+ s.getDepartment());					
+		}
+	}
+	 public void addGrades() {
+		int score=0;
+		for(int i=0;i<arr.length;i++) {
+			Student s= arr[i];
+			System.out.println("Enter the score of "+ s.getStudentName());
+			Scanner sc= new Scanner(System.in);
+			score=sc.nextInt();
+			if(score>90)
+			{
+				s.setGrade('A');
+			}else if(score>80 && score<90) {
+				s.setGrade('B');
+			}else if(score>70 && score<80) {
+				s.setGrade('C');
+			}else {
+				s.setGrade('D');
+			}
+
+		}
+
+	}
+	/*	static public void showGrades() {
+		for(int i=0;i<arr.length;i++) {
+			Student s= arr[i];
+			System.out.println(s.getStudentName()+" "+ s.getGrade());
+
+		}
+	} */
+	public void showGrades() {
+		for(int i=0;i<arr.length;i++) {
+			Student s= arr[i];
+			System.out.println(s.getStudentName()+" "+ s.getGrade());
+
+		}
+	}
+	 public void availableCourses() {
+
+		CourseCatalogue c1 = new CourseCatalogue("Java", 101,5000);
+		CourseCatalogue c2 = new CourseCatalogue("SQL", 102,3000);
+		CourseCatalogue c3 = new CourseCatalogue("Oracle", 103,5000);
+		CourseCatalogue c4 = new CourseCatalogue("DBMS", 104,4000);
+		m.put(1, c1);
+		m.put(2, c2);
+		m.put(3, c3);
+		m.put(4, c4);
+		/*
+		 * cou[0]=c1; cou[1]=c2; cou[2]=c3;
+		 */
+
+	}
+	 public void viewCourses() {
+		 System.out.println("Path-2");
+		 Iterator  it = m.keySet().iterator();
+		 while(it.hasNext())  
+		 {  
+			 int key=(int)it.next();  
+			 CourseCatalogue c = (CourseCatalogue) m.get(key);  
+			 System.out.println(c.getCourseName()+"	"+c.getCourseId());
+		 } 
+			/*
+			 * for(int i=0;i<cou.length;i++) { CourseCatalogue c= cou[i];
+			 * System.out.println(c.getCourseName()+" "+
+			 * c.getCourseId()+" "+c.getCourseFee());
+			 * 
+			 * }
+			 */
+	}
+	 public Professor enrollProfessors() {
+		Professor p1= new Professor("Amit","Java","IT",101,"abcd1");
+		Professor p2= new Professor("Awez","SQL","IT",102,"abcd2");
+		Professor p3= new Professor("Shiva","Oracle","IT",103,"abcd3");
+		Professor p4= new Professor("Pallavi","DBMS","IT",104,"abcd4");
+		al2.add(p1.getCredential());
+		al2.add(p2.getCredential());
+		al2.add(p3.getCredential());
+		al2.add(p4.getCredential());
+
+		al.add(p1.getProfessorName());
+		al.add(p2.getProfessorName());
+		al.add(p3.getProfessorName());
+		al.add(p4.getProfessorName());      
+		return p1;
+
+	}
+	 public boolean validation(String name, String pwd) {
+		if(al.contains(name)==true && al2.contains(pwd)) {	
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	 public void registerProfessor(String name, String cname, int id, String dpt, String pwd) {
+		// TODO Auto-generated method stub
+		Professor p= new Professor(name, cname, dpt, id, pwd);
+		al.add(p.getProfessorName());
+		al2.add(p.getCredential());
+	}
+	public boolean updatePwdValidation(String pname, String ppwd, String npwd) {
+		if(al.contains(pname)==true && al2.contains(ppwd)) {	
+			int x = al.indexOf(pname);
+			int y = al2.indexOf(ppwd);
+			if(x==y) {
+				al2.set(y, npwd);
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	@Override
+	public void courseMapingForProfessor() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void viewAllCourses() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

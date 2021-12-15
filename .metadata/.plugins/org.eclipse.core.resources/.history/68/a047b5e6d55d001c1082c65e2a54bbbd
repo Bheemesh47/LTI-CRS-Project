@@ -1,0 +1,13 @@
+package com.lt.crs.dao;
+
+import com.lt.crs.business.AdminOperations;
+
+public interface CourseDataOps {
+	 public void courseMapingForProfessor();
+	    public void availableCourses();
+	    public void viewAllCourses();
+	    public void courseRegistrationData();
+		public void courseAvailability();
+		public void courseStatus();
+		
+}
